@@ -1,4 +1,12 @@
 .data
+	.word 3
+	.word 3
+	.word 3
+	.word 3
+	.word 3
+	.word 3
+	.word 3
+	.word 3
 	.word 0
 	.word 1
 	.word 2
@@ -105,21 +113,19 @@
 .globl main
 	
 main:
-	addi $s5, $zero, 20
-	addi $s3, $zero, 10
-	addi $s4, $zero, 1
-	lui  $s6, 0x1001
+	addi $s5, $zero, 3  # k = 3 //condition
+	addi $s3, $zero, 0  # i = 0 //starting point
+	addi $s4, $zero, 2  # j = 2 //increment by j
+	lui  $s6, 0x1001    # base addr of a
 
-	add  $t2, $zero, $s4
-	sll  $t2, $t2, 2
-	add  $t1, $s3, $zero
-	sll  $t1, $t2, 2
-	add  $t1, $s6, $t1
+
+	sll  $t2, $s4, 2    # t2 <- 4*j
+	sll  $t1, $s3, 2    # t1 <- 4*i
+	add  $t1, $s6, $t1  # t1 <- base addr of a[i]
 loop:
-	lw $t0, 0($t1)
-	beq $t0, $s5, exit
-	add $t1, $t1, $t2
-	j loop
+	lw $t0, 0($t1)	    # t0 <- a[i]
+	add $t1, $t1, $t2   # t1 <- base addr of a[i + j]
+	beq $t0, $s5, loop  # t0 <- 
 exit:
 done: 
 	jr $ra

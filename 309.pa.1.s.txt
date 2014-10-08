@@ -1,0 +1,6 @@
+1)
+	0x10010008 remains unchanged and has a value of 0
+2) 
+	lw $4, 0($29)            ; 183: lw $a0 0($sp) # argc 
+3)
+	addu $27, $0, $1         ; 90: move $k1 $at # Save $at 
